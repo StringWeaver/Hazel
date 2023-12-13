@@ -1,8 +1,7 @@
-project "Core"
-   kind "StaticLib"
+project "Hazel"
+   kind "SharedLib"
    language "C++"
    cppdialect "C++20"
-   targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
    files { "Source/**.h", "Source/**.cpp" }
@@ -15,9 +14,11 @@ project "Core"
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
+   defines {"HZ_BUILD_DLL"}
    filter "system:windows"
        systemversion "latest"
-       defines { }
+       defines {"HZ_PLATFORM_WINDOWS"}
+       
 
    filter "configurations:Debug"
        defines { "DEBUG" }

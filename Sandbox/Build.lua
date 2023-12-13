@@ -1,8 +1,7 @@
-project "App"
+project "Sandbox"
    kind "ConsoleApp"
    language "C++"
    cppdialect "C++20"
-   targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
    files { "Source/**.h", "Source/**.cpp" }
@@ -10,14 +9,12 @@ project "App"
    includedirs
    {
       "Source",
-
-	  -- Include Core
-	  "../Core/Source"
+	  "../Hazel/Source"
    }
 
    links
    {
-      "Core"
+      "Hazel"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
@@ -25,7 +22,7 @@ project "App"
 
    filter "system:windows"
        systemversion "latest"
-       defines { "WINDOWS" }
+       defines { "HZ_PLATFORM_WINDOWS" }
 
    filter "configurations:Debug"
        defines { "DEBUG" }
